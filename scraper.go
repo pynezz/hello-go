@@ -8,7 +8,7 @@ package main
 //
 
 // Usage: go run scraper.go
-// curl -s 127.0.0.1:7171/search/<URL>
+// curl -s 127.0.0.1:7171/search?url=<URL>
 
 import (
 	"encoding/json"
@@ -37,8 +37,6 @@ func scraper() {
 	log.Println("listening on", addr)
 	log.Fatal(http.ListenAndServe(addr, nil))
 }
-
-// Get link from website
 
 func getData(w http.ResponseWriter, r *http.Request) {
 
