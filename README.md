@@ -6,10 +6,9 @@ img[alt=golang.org] {
     border: none;
     bacground:none;
 }
-
-<img src="https://blog.golang.org/go-brand/Go-Logo/SVG/Go-Logo_Blue.svg" alt="Go-Logo" width="200">
-
-![img](https://blog.golang.org/go-brand/Go-Logo/SVG/Go-Logo_Blue.svg)](https://golang.org)
+<a href="https://golang.org">
+<img src="https://blog.golang.org/go-brand/Go-Logo/SVG/Go-Logo_Blue.svg" alt="golang.org" width="200">
+</a>
 
 ## This is a repository where I explore [Go](https://golang.org)!
 
