@@ -7,14 +7,14 @@ type Person struct {
 	Age  int
 }
 
-func (k Person) print() {
+func (k Person) Print() {
 	fmt.Println("\n", k)
 }
 
-func printPerson(name string, age int) {
+func xPrintPerson(name string, age int) {
 	person := Person{
 		name,
 		age,
 	}
-	person.print()
+	person.Print()
 }
