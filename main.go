@@ -4,29 +4,28 @@ import (
 	"fmt"
 
 	hello "github.com/pynezz/hello_world"
-	basics "github.com/pynezz/the_basics"
 )
 
 var age int
 var name string = "Kevin"
 
 func main() {
-	RunPackageHello_Go()
-	PrintFromBasics(name, 24)
+	runPackageHello_Go()
+	printFromBasics(name, 24)
 }
 
-func PrintFromBasics(name string, age int) {
-	basics.PrintPerson(name, age)
+func printFromBasics(name string, age int) {
+	basics.printPerson(name, age)
 }
 
-func PrintString() {
+func printString() {
 	age = 24
 	fmt.Printf("\nMy age: %d \n", age)
-	added := AddTwoInts(2, 2)
+	added := addTwoInts(2, 2)
 	fmt.Printf("2 + 2 = %v", added)
 }
 
-func AddTwoInts(i int, j int) int {
+func addTwoInts(i int, j int) int {
 	add := func(i int, j int) int {
 		k := i + j
 		return k
@@ -34,11 +33,11 @@ func AddTwoInts(i int, j int) int {
 	return add(i, j)
 }
 
-func RunPackageHello_Go() {
+func runPackageHello_Go() {
 	h := hello.Hello{
 		Hello: "Hey",
 	}
 	h.Hello_Go()
 
-	PrintString()
+	printString()
 }
