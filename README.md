@@ -1,7 +1,7 @@
 # hello-go
 
 <a href="https://golang.org">
-<img src="https://blog.golang.org/go-brand/Go-Logo/SVG/Go-Logo_Blue.svg" alt="golang.org" height="50">
+<img src="https://blog.golang.org/go-brand/Go-Logo/SVG/Go-Logo_Blue.svg" alt="golang.org" height="100">
 </a>
 
 ## This is a repository where I explore [Go](https://golang.org)!
