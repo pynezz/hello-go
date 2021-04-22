@@ -6,7 +6,26 @@
 
 ## This is a repository where I explore [Go](https://golang.org)!
 
-### 22.04.2021
+### Syntax
 
  - PascalCase is for exported (public) functions, and camelCase for private. ([Documentation](https://golang.org/ref/spec#Exported_identifiers))
+ - := declares a new inferred type
+ - type declaration is reversed as from C#
+
+    C# methods: 
+
+    ```cs
+    void Method(int i)
+    {
+        // code goes here
+    }
+    ```
+    
+    Go functions:
+
+    ```go
+    func function(i int) {
+        // code goes here
+    }
+    ```
 
