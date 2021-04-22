@@ -1,6 +1,15 @@
 # hello-go
 
-[![N!Solid](https://blog.golang.org/go-brand/Go-Logo/SVG/Go-Logo_Blue.svg)][(https://golang.org/){:height="50%"}]
+img[alt=golang.org] {
+    width: 50px;
+    height: 100px;
+    border: none;
+    bacground:none;
+}
+
+<img src="https://blog.golang.org/go-brand/Go-Logo/SVG/Go-Logo_Blue.svg" alt="Go-Logo" width="200">
+
+![img](https://blog.golang.org/go-brand/Go-Logo/SVG/Go-Logo_Blue.svg)](https://golang.org)
 
 ## This is a repository where I explore [Go](https://golang.org)!
 
