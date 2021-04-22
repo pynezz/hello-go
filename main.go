@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	hello "github.com/pynezz/hello_world"
-	_ "github.com/pynezz/the_basics"
+	basics "github.com/pynezz/the_basics"
 )
 
 var age int
@@ -16,7 +16,7 @@ func main() {
 }
 
 func printFromBasics(name string, age int) {
-	//basics.xPrintPerson(name, age)
+	basics.PrintPerson(name, age)
 }
 
 func printString() {
@@ -42,3 +42,5 @@ func runPackageHello_Go() {
 
 	printString()
 }
+
+// Notes:
