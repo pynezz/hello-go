@@ -1,6 +1,9 @@
-package scraper
+package main
 
-// Go web scraper
+//
+//			 Go web scraper
+//				 0.0.1
+//
 
 import (
 	"log"
@@ -12,7 +15,7 @@ func ping(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("ping"))
 }
 
-func main() {
+func scraper() {
 	addr := ":7171"
 	http.HandleFunc("/ping", ping)
 

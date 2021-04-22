@@ -11,8 +11,9 @@ var age int
 var name string = "Kevin"
 
 func main() {
-	runPackageHello_Go()
-	printFromBasics(name, 24)
+	// runPackageHello_Go()
+	// printFromBasics(name, 24)
+	scraper()
 }
 
 func printFromBasics(name string, age int) {
