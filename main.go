@@ -15,7 +15,7 @@ func main() {
 }
 
 func printFromBasics(name string, age int) {
-	basics.printPerson(name, age)
+	//basics.printPerson(name, age)
 }
 
 func printString() {

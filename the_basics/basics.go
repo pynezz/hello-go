@@ -7,7 +7,7 @@ type Person struct {
 	Age  int
 }
 
-func (k Person) Print() {
+func (k Person) print() {
 	fmt.Println("\n", k)
 }
 
@@ -16,5 +16,5 @@ func printPerson(name string, age int) {
 		name,
 		age,
 	}
-	person.Print()
+	person.print()
 }
