@@ -4,12 +4,19 @@ import (
 	"fmt"
 
 	hello "github.com/pynezz/hello_world"
+	basics "github.com/pynezz/the_basics"
 )
 
 var age int
+var name string = "Kevin"
 
 func main() {
 	RunPackageHello_Go()
+	PrintFromBasics(name, 24)
+}
+
+func PrintFromBasics(name string, age int) {
+	basics.PrintPerson(name, age)
 }
 
 func PrintString() {
