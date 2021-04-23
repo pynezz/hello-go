@@ -12,9 +12,10 @@
  - := declares a new inferred type
  - type declaration is reversed as from C#
 
+
     C# methods: 
 
-    ```cs
+    ```csharp
     void Method(int i)
     {
         // code goes here
@@ -23,9 +24,23 @@
     
     Go functions:
 
-    ```go
+    ```golang
     func function(i int) {
         // code goes here
     }
     ```
 
+### Sources
+
+#### golang.org
+ - [Getting Started - **golang.org**](https://golang.org/doc/tutorial/getting-started)
+ - [Create Module - golang.org](https://golang.org/doc/tutorial/create-module)
+ - [Random Greeting - **golang.org**](https://golang.org/doc/tutorial/random-greeting)
+
+ - [Package fmt - **golang.org**](https://golang.org/pkg/fmt/#Printf)
+
+-----
+#### other
+ - [The blank identifier in Golang - golangdocs.com](https://golangdocs.com/blank-identifier-in-golang)
+ - [How to build a web scraper using golang with colly - dev.to/vianeltxt](https://dev.to/vianeltxt/how-to-build-a-web-scraper-using-golang-with-colly-18lh)
+ - [go-colly.org](http://go-colly.org/)
