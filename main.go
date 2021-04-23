@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 
 	hello "github.com/pynezz/hello_world"
 	basics "github.com/pynezz/the_basics"
@@ -13,7 +14,13 @@ var name string = "Kevin"
 func main() {
 	// runPackageHello_Go()
 	// printFromBasics(name, 24)
-	scraper()
+	message, err := hello.RandomGreeting(name)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(message)
+
+	//scraper()
 }
 
 func printFromBasics(name string, age int) {
