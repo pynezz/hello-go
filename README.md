@@ -33,14 +33,17 @@
 ### Sources
 
 #### golang.org
- - [Getting Started - **golang.org**](https://golang.org/doc/tutorial/getting-started)
- - [Create Module - golang.org](https://golang.org/doc/tutorial/create-module)
- - [Random Greeting - **golang.org**](https://golang.org/doc/tutorial/random-greeting)
+ - [Getting Started - *golang.org*](https://golang.org/doc/tutorial/getting-started)
+ - [Create Module - *golang.org*](https://golang.org/doc/tutorial/create-module)
+ - [Random Greeting - *golang.org*](https://golang.org/doc/tutorial/random-greeting)
 
- - [Package fmt - **golang.org**](https://golang.org/pkg/fmt/#Printf)
+ - [Package fmt - *golang.org*](https://golang.org/pkg/fmt/#Printf)
 
 -----
 #### other
  - [The blank identifier in Golang - golangdocs.com](https://golangdocs.com/blank-identifier-in-golang)
  - [How to build a web scraper using golang with colly - dev.to/vianeltxt](https://dev.to/vianeltxt/how-to-build-a-web-scraper-using-golang-with-colly-18lh)
  - [go-colly.org](http://go-colly.org/)
+
+#### Markdown
+ - [markdownguide.org](https://www.markdownguide.org/)
