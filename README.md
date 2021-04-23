@@ -4,6 +4,8 @@
 <img src="https://blog.golang.org/go-brand/Go-Logo/SVG/Go-Logo_Blue.svg" alt="golang.org" height="100">
 </a>
 
+###### Go 1.16.3
+
 ## This is a repository where I explore [Go](https://golang.org)!
 
 ### Syntax
