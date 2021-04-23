@@ -13,7 +13,16 @@
  - PascalCase is for exported (public) functions, and camelCase for private. ([Documentation](https://golang.org/ref/spec#Exported_identifiers))
  - := declares a new inferred type
  - type declaration is reversed as from C#
+ - No need for parentheses in if statements
+ - No need for semicolon at end of variables etc. unless it's  
 
+    Go functions:
+
+    ```golang
+    func function(i int) {
+        // code goes here
+    }
+    ```
 
     C# methods: 
 
@@ -23,23 +32,18 @@
         // code goes here
     }
     ```
-    
-    Go functions:
 
-    ```golang
-    func function(i int) {
-        // code goes here
-    }
-    ```
 
 ### Sources
 
 #### golang.org
- - [Getting Started - *golang.org*](https://golang.org/doc/tutorial/getting-started)
- - [Create Module - *golang.org*](https://golang.org/doc/tutorial/create-module)
- - [Random Greeting - *golang.org*](https://golang.org/doc/tutorial/random-greeting)
+ - [Getting Started - *docs*](https://golang.org/doc/tutorial/getting-started)
+ - [Create Module - *docs*](https://golang.org/doc/tutorial/create-module)
+ - [Random Greeting - *docs*](https://golang.org/doc/tutorial/random-greeting)
 
- - [Package fmt - *golang.org*](https://golang.org/pkg/fmt/#Printf)
+ - [Package fmt - *pkg/fmt*](https://golang.org/pkg/fmt/#Printf)
+
+ - [Effective go - *docs*](https://golang.org/doc/effective_go)
 
 -----
 #### other
@@ -49,3 +53,9 @@
 
 #### Markdown
  - [markdownguide.org](https://www.markdownguide.org/)
+
+
+#### misc
+ ###### First google result on term 'go semicolon' yielded possibly one of the earliest questions about Go on stackoverflow, datet 2 days after first official announcement (November 12th, 2009)
+ - [StackOverflow outdated question about semicolon placement](https://stackoverflow.com/questions/1719999/why-do-i-need-a-semicolon-here)
+    - [This is what I was looking for - *golang.org | docs/effective_go#semicolons](https://golang.org/doc/effective_go#semicolons)
