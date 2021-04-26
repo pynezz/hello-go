@@ -65,3 +65,7 @@
   First google result on term 'go semicolon' yielded possibly one of the earliest questions about Go on stackoverflow, datet 2 days after first official announcement (November 12th, 2009)
  - [StackOverflow outdated question about semicolon placement](https://stackoverflow.com/questions/1719999/why-do-i-need-a-semicolon-here)
     - [This is what I was looking for - *golang.org | docs/effective_go#semicolons](https://golang.org/doc/effective_go#semicolons)
+
+#### gRPC
+ - [Protocol Buffer install - grpc.io](https://grpc.io/docs/protoc-installation/)
+ - [Go quick start - grpc.io](https://grpc.io/docs/languages/go/quickstart/)
