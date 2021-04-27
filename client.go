@@ -1,15 +1,14 @@
-package client
+package main
 
 import (
 	"log"
 
+	"github.com/pynezz/chat"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
-	"github.com/pynezz/chat"
-	"github.com/pynezz"
 )
 
-func main() {
+func connectClient() {
 	var conn *grpc.ClientConn
 	conn, err := grpc.Dial(":9000", grpc.WithInsecure())
 
@@ -17,11 +16,11 @@ func main() {
 		log.Fatalf("Could not connect: %s", err)
 	}
 	defer conn.Close()
-	
+
 	c := chat.NewChatServiceClient(conn)
 
-	message := chat.Message {
-		Body = "Hello from the client!"
+	message := chat.Message{
+		Body: "Hello from the client!",
 	}
 	response, err := c.SayHello(context.Background(), &message)
 
