@@ -18,7 +18,7 @@ func StartServer() {
 		log.Fatalf("Failed to listen on port 9000: %v", err)
 	}
 
-	s := chat.Server{}
+	s := chat.UnimplementedChatServiceServer{}
 
 	grpcServer := grpc.NewServer()
 

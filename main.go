@@ -3,9 +3,13 @@ package main
 import (
 	"fmt"
 	"log"
+	"net"
 
+	chat "github.com/pynezz/chat"
 	hello "github.com/pynezz/hello_world"
 	basics "github.com/pynezz/the_basics"
+
+	"google.golang.org/grpc"
 )
 
 var age int
@@ -21,8 +25,27 @@ func main() {
 	fmt.Println(message)
 
 	fmt.Println(("Starting gRPC server..."))
-
+	startServer()
 	//scraper()
+}
+
+func startServer() {
+	lis, err := net.Listen("tcp", ":9000")
+	if err != nil {
+		log.Fatalf("Failed to listen on port 9000: %v", err)
+	}
+
+	s := chat.UnimplementedChatServiceServer{}
+
+	grpcServer := grpc.NewServer()
+
+	chat.RegisterChatServiceServer(grpcServer, &s)
+
+	if err := grpcServer.Serve(lis); err != nil {
+		log.Fatalf("Failed to serve gRPC server over port 9000: %v", err)
+	}
+
+	fmt.Println("Server started")
 }
 
 func printFromBasics(name string, age int) {
