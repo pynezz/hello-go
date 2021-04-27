@@ -20,6 +20,8 @@ func main() {
 	}
 	fmt.Println(message)
 
+	fmt.Println(("Starting gRPC server..."))
+
 	//scraper()
 }
 

@@ -8,11 +8,11 @@ import (
 	"log"
 	"net"
 
-	"github.com/pynezz/chat"
+	chat "github.com/pynezz/chat"
 	"google.golang.org/grpc"
 )
 
-func startServer() {
+func StartServer() {
 	lis, err := net.Listen("tcp", ":9000")
 	if err != nil {
 		log.Fatalf("Failed to listen on port 9000: %v", err)
