@@ -10,9 +10,8 @@ import (
 	hello "github.com/pynezz/hello-go/hello_world"
 	basics "github.com/pynezz/hello-go/the_basics"
 
-	"github.com/pynezz/hello-go"	"google.golang.org/grpc"
+	"google.golang.org/grpc"
 )
-
 
 var age int
 var name string = "Kevin"
