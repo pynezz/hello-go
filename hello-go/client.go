@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/pynezz/chat"
+	"github.com/pynezz/hello-go/chat"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 )

@@ -1,4 +1,4 @@
-module github.com/pynezz
+module github.com/pynezz/hello-go
 
 go 1.16
 

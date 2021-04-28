@@ -8,7 +8,7 @@ import (
 	"log"
 	"net"
 
-	chat "github.com/pynezz/chat"
+	chat "github.com/pynezz/hello-go/chat"
 	"google.golang.org/grpc"
 )
 

@@ -5,9 +5,9 @@ import (
 	"log"
 	"net"
 
-	chat "github.com/pynezz/chat"
-	hello "github.com/pynezz/hello_world"
-	basics "github.com/pynezz/the_basics"
+	chat "github.com/pynezz/hello-go/chat"
+	hello "github.com/pynezz/hello-go/hello_world"
+	basics "github.com/pynezz/hello-go/the_basics"
 
 	"google.golang.org/grpc"
 )
