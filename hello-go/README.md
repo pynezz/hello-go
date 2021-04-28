@@ -16,7 +16,7 @@
  - No need for parentheses in if statements
  - No need for semicolon at end of variables etc. unless it's  
 
-    Go functions:
+    Go private functions with parameter of type int:
 
     ```golang
     func function(i int) {
@@ -24,13 +24,82 @@
     }
     ```
 
-    C# methods: 
+    C# equivalent: 
 
     ```csharp
-    void Method(int i)
+    private void Method(int i)
     {
         // code goes here
     }
+    ```
+
+    Go public function: 
+       - capitalized = public/exported
+
+    ```go
+    func Function() {
+        
+    }
+
+    ```
+
+    C# equivalent:
+    ```cs
+    public void Method() 
+    {
+
+    }
+    
+    ```
+
+    Go function with return value
+    
+    ```go
+    func name(s string) string {
+        return "Name: " + s
+    }
+
+    ```
+
+    C# equivalent:
+    ```cs
+    private string Name(string s)
+    {
+        return $"Name: {s}";
+    }
+    
+    ```
+
+    Go receivers: 
+    ```go
+    func (e Type) getField() string {
+        // Receives a copy of the type and returns the value
+    }
+
+    ```
+
+    ```cs
+    private string ReturnType(Type t) 
+    {
+        
+    }
+    
+    ```
+    
+    Go - pass the reference, not just the value. Used for mutation: 
+    ```go
+    func (e *Type) getField() string {
+        // Receives the refenerence of the type and changes the value
+    }
+
+    ```
+
+    ```cs
+    private string ReturnType(Type t) 
+    {
+        
+    }
+    
     ```
 
 

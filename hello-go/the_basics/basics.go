@@ -1,6 +1,8 @@
 package basics
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Person struct {
 	Name string
@@ -211,7 +213,7 @@ func testStructs() {
 
 	fmt.Println("Eats human? ", herbi.eatHuman) // False
 
-	// Anonymous structs
+	// Anonymous struct
 	bio := struct {
 		firstName string
 		friends   map[string]int
@@ -230,12 +232,132 @@ func testStructs() {
 
 	fmt.Println("Bio: ", bio.firstName)
 
+	// Iterating through all the keys and values in a map of an anonymous struct
 	for k, v := range bio.friends {
 		fmt.Println(k, v)
 	}
 
+	// Iterating through all the keys and values in a slice of an anonymous struct
 	for k, v := range bio.favDrinks {
 		fmt.Println(k, v)
 	}
 
+	callFunctions()
+
 }
+
+// FUNCTIONS
+// Functions can be values, since Go in itself is functional
+
+func callFunctions() {
+	defer LastHi() // Defer postpones a function to run last
+	defer func() { // The defers works like a stack, and will be reversed in order...
+		// ... adding LastHi() first, and then this one on top, executing this one before LastHi()
+		fmt.Println("Almost last hi")
+	}()
+
+	a := Hello()
+	fmt.Println(a) // Hello, there
+
+	// Initializing both values short-hand
+	b, c := TwoValues()
+	fmt.Println(b, c) // Hello world
+
+	// Functions as values
+	d := TwoValues
+	fmt.Println(d()) // Hello world
+
+	testReceivers()
+}
+
+// Function functionName() return type { ... }
+func Hello() string {
+	return "Hello, there"
+}
+
+func TwoValues() (string, string) {
+	return "Hello", "world"
+}
+
+// public void FunctionName()
+func LastHi() {
+	fmt.Println("Last HI!")
+}
+
+// RECEIVERS
+// Calling a function using standard parameters will make a copy, and return the copy value.
+// To mutate our values, we need to pass it along with a reference (e *Employee)
+type Employee struct {
+	FirstName, LastName string
+}
+
+// Standard way of sending in information to a function and specifying the return type
+// function functionName(param1 type, param2 type) (returnValue returnType)
+func fullName(firstName string, lastName string) (fullName string) {
+	fullName = firstName + lastName
+	return fullName
+}
+
+func testReceivers() {
+	e := Employee{
+		FirstName: "X Æ A-12",
+		LastName:  "Musk",
+	}
+
+	fmt.Println("Son's name was", fullName(e.FirstName, e.LastName))
+
+	testInterfaces()
+}
+
+// For quicker access to fields
+func (e Employee) fullName() string {
+	return e.FirstName + " " + e.LastName // More string concatination too!
+}
+
+// For modifying the internals of the struct
+func (e *Employee) changeLastName(firstName string) {
+	e.FirstName = firstName
+}
+
+// INTERFACES
+// Implementation of interfaces is implicit, rather than explicit like for C#
+// Interfaces are very popular in Go
+
+type Shape interface {
+	Area() float64
+	Perimeter() float64
+}
+
+type Rect struct {
+	width  float64 // The struct implements Shape implicit
+	height float64 // The struct implements Shape implicit
+}
+
+func (r Rect) Area() float64 {
+	return r.width * r.height
+}
+
+func (r Rect) Perimeter() float64 {
+	return 2 * (r.width * r.height)
+}
+
+var s Shape
+
+func testInterfaces() {
+	s = Rect{width: 5.0, height: 4.0}
+	r := Rect{5.0, 4.0} // We don't have to use names, just send the calues in the order of the interface
+
+	fmt.Printf("Type of s is %T\n", s)
+	fmt.Printf("value of s is %v\n", s)
+	fmt.Println("area of rectangle s", s.Area())
+	fmt.Println("s == r is", s == r)
+
+	printArea(r)
+
+}
+
+func printArea(s Shape) {
+	fmt.Printf("Area of shape is: %v", s.Area())
+}
+
+// POINTERS
