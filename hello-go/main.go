@@ -5,12 +5,14 @@ import (
 	"log"
 	"net"
 
+	//chat "github.com/pynezz/chat"
 	chat "github.com/pynezz/hello-go/chat"
 	hello "github.com/pynezz/hello-go/hello_world"
 	basics "github.com/pynezz/hello-go/the_basics"
 
-	"google.golang.org/grpc"
+	"github.com/pynezz/hello-go"	"google.golang.org/grpc"
 )
+
 
 var age int
 var name string = "Kevin"
