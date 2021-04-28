@@ -189,12 +189,13 @@ func testStructs() {
 		fmt.Printf("\t %v\n", v) // \t is regular expression for TAB: https://www.rexegg.com/regex-quickstart.html
 	}
 
-	// Promotion
+	// Promotion ...
 	type herbivore struct {
 		animal   animal
 		eatHuman bool
 	}
 
+	// ... A struct within a struct
 	herbi := herbivore{
 		animal: animal{
 			name: "Goat",
@@ -208,7 +209,7 @@ func testStructs() {
 
 	fmt.Println("\nThis animal:")
 
-	fmt.Println("Eats human? ", herbi.eatHuman)
+	fmt.Println("Eats human? ", herbi.eatHuman) // False
 
 	// Anonymous structs
 	bio := struct {
@@ -236,4 +237,5 @@ func testStructs() {
 	for k, v := range bio.favDrinks {
 		fmt.Println(k, v)
 	}
+
 }
