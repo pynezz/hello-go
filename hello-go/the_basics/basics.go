@@ -518,6 +518,91 @@ func printNum(i int, wg *sync.WaitGroup) { // Passing in the waitgroup by refere
 
 // CHANNELS
 // Allows putting data inside the channels and pull data out of those channels in a thread safe way
+// Good for passing information in and out of goroutines
+
+// Channel operator: <-
+// The data flows in the direction of the arrow
 func testChannels() {
 	fmt.Println("Testing channels")
+
+	simple()
+}
+
+func simple() {
+	somechan := make(chan int)    // Making a new channel with the make keyword, of type int
+	go func() { somechan <- 1 }() // Creating a goroutine that is going to read from the channel
+	a := <-somechan               // From the outside we can create a variable that reads from the channel
+	fmt.Println(a)                // And then print it
+
+	blocking()
+}
+
+// Channels are blocking
+// Channels can't hold data, so I need to get the data from the channel before the application can continue
+// We need a goroutine in the background getting the value from a channel immediately after I put something in the channel
+// Channels are also used for blocking and syncing the flow
+
+func blocking() {
+	someChan := make(chan bool)
+
+	// someChan <- true 	- this will be blocked
+	// <-someChan 			- as well as this
+	go func() { // If we removed this function, we could not read anything in the print
+		someChan <- true // because nothing is trying to write to the channel
+	}() // this would cause a deadlock, resulting in an error, since the application would never finish
+	fmt.Println(<-someChan) // Code will start executing from here once func blocking() is called,
+	// the goroutine will be running, putting a value into the channel,
+	// making us able to print the value.
+	// Else, the execution would wait until the channel had a value
+	buffered()
+}
+
+// Buffered channels are able to hold value
+func buffered() {
+	someChan := make(chan bool, 1) // Declaring a channel with one slot, meaning it can hold a single value
+	someChan <- true               // No block, the channel can hold one value
+	fmt.Println(<-someChan)
+
+	brokenFor()
+}
+
+func brokenFor() {
+	someChan := make(chan int)
+
+	go func() {
+		// Infinite loop in the background
+		for {
+			fmt.Println(<-someChan)
+		}
+	}() // void
+
+	someChan <- 1 // 1
+	someChan <- 2 // 2
+	someChan <- 3 //
+	// 3 will not be printed, because after assigning 3 to the channel, the program exits
+
+	chanRange()
+}
+
+// Q: Why can you assign 3 values to a channel here and print all the values? Can a channel hold multiple values if they're closed?
+// how do the channel know that it's being closed ahead of time? Shouldn't value 1 and 2 be discarded?
+// No wait, the goroutine will assign 1 to the channel, then it will block. The for loop will read channel value 1, and get blocked
+// the goroutine will assign 2, and so on. I think.
+func chanRange() {
+	someChan := make(chan int)
+	go func() {
+		someChan <- 1   // 1
+		someChan <- 2   // 2
+		someChan <- 3   // 3
+		close(someChan) // This will work
+	}()
+	for val := range someChan { // This will read from the channel as it's being assigned to
+		fmt.Println(val)
+	}
+
+	closingChan()
+}
+
+func closingChan() {
+
 }
