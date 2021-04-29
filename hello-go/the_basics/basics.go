@@ -604,5 +604,47 @@ func chanRange() {
 }
 
 func closingChan() {
+	// Closing a channel
+	someChan := make(chan int)
+	close(someChan)
+	// Writing to a close chan will be panic, crash the program and exit
+	// someChan <- 3
 
+	// Reading from a closed channel will always succeed
+	// first will be zero-value
+	// second will be bool indicating if the channel is open
+	val, b := <-someChan
+	fmt.Printf("Val is: %v, is open: %v\n", val, b) //0, false
+	// Range will read from the channel until _, bool returns false
+
+	// Rule of thumb:
+	// ONLY THE CREATOR OF A CHANNEL, CLOSES THE CHANNEL
+	broadcastChan()
+}
+
+func broadcastChan() {
+	var wg sync.WaitGroup
+	ch := make(chan int)
+
+	wg.Add(2)               // Adding two waitgroups to wg WaitGroup
+	go func(c <-chan int) { // Creating a goroutine with channel c of type int
+		for i := range c { // Ranging in c until _, bool == false
+			fmt.Println("1st goroutine: ", i) // This is the first goroutine, reading from channel ch
+		}
+		// Next line happens only if c is closed
+		wg.Done()
+	}(ch)
+
+	go func(c <-chan int) { // Creating a goroutine with channel c of type int
+		for i := range c { // Ranging in c until _, bool == false
+			fmt.Println("1st goroutine: ", i) // This is the second goroutine reading from the same channel as the first goroutine
+		}
+		// Next line happens only if c is closed
+		wg.Done()
+	}(ch)
+
+	for i := 0; i < 10; i++ {
+		ch <- 1
+	}
+	close(ch) // Both goroutines will run until this one exits the main goroutine
 }
