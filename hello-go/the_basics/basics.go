@@ -2,6 +2,8 @@ package basics
 
 import (
 	"fmt"
+	"strings"
+	"sync"
 )
 
 type Person struct {
@@ -305,7 +307,9 @@ func testReceivers() {
 	}
 
 	fmt.Println("Son's name was", fullName(e.FirstName, e.LastName))
-
+	e.changeFirstName("X Æ A-Xii")
+	fmt.Println("Son's name is now", fullName(e.FirstName, e.LastName))
+	fmt.Println("Son's name is now", e)
 	testInterfaces()
 }
 
@@ -315,7 +319,10 @@ func (e Employee) fullName() string {
 }
 
 // For modifying the internals of the struct
-func (e *Employee) changeLastName(firstName string) {
+// I suppose this is valid:
+// func (ref/ref value) funcName(p pType) (r rType, r2 rType2)
+// Which makes the function a function for the struct only with params and return values
+func (e *Employee) changeFirstName(firstName string) {
 	e.FirstName = firstName
 }
 
@@ -354,10 +361,163 @@ func testInterfaces() {
 
 	printArea(r)
 
+	testStrings()
 }
 
 func printArea(s Shape) {
 	fmt.Printf("Area of shape is: %v", s.Area())
 }
 
+// TYPE CHECKING/CONVERSION
+// Everything is a type, also interfaces
+func testStrings() {
+	explain("Hello world")
+	explain(52)
+	explain(true)
+
+	explain2("Hello world 2")
+
+	testPointers()
+}
+
+// We can infer types at runtime
+func explain(i interface{}) { // Using empty interface to infer the type of i and then checking it in the switch
+	fmt.Println("Type checking with interface i as parameter: ")
+	switch i.(type) {
+	case string:
+		fmt.Println("i stored string ", strings.ToUpper(i.(string))) // Need to cast
+	case int:
+		fmt.Println("i stored int", i)
+	default:
+		fmt.Println("i stored something else", i)
+	}
+}
+
+func explain2(i interface{}) {
+	// Shorter
+	switch i := i.(type) { // Assigning i.(type) to a variable declares the type of that variable beforehand
+	case string:
+		fmt.Println("i stored string ", strings.ToUpper(i)) // No need to cast
+	case int:
+		fmt.Println("i stored int", i)
+	default:
+		fmt.Println("i stored something else", i)
+	}
+}
+
 // POINTERS
+
+type OriginalType struct {
+	firstName string
+	lastName  string
+}
+
+func changeNameVal(ot OriginalType) {
+	ot.firstName = "Unchanged" // This will not change the original struct, just make a copy and return the new value
+}
+
+func changeOriginalName(ot *OriginalType) {
+	ot.firstName = "Karl"
+}
+
+func changeSecondItemVal(arr [5]int) {
+	arr[1] = 1
+}
+
+func changeSecondItem(arr *[5]int) {
+	arr[1] = 1
+}
+
+func changeSecondItemSlice(arr []int) {
+	arr[1] = 1
+}
+
+// "main"
+func testPointers() {
+	fmt.Println("Testing pointers")
+
+	originalType := OriginalType{
+		firstName: "Ola",
+		lastName:  "Nordmann",
+	}
+
+	changeNameVal(originalType) // Do not change the original struct, only returns a copy
+	fmt.Println("Did not change", originalType)
+
+	changeOriginalName(&originalType) // Needs a receiver of the original (&) using memory address
+	fmt.Println("Did change", originalType)
+
+	// Arrays is sent by value, slices are sent by reference by default
+	// Slices, maps and channels are sent by reference by default - no need to create reference
+	var a = [5]int{} // Array
+	changeSecondItemVal(a)
+	fmt.Println("Did not change the original: ", a) // Unchanged ([0, 0, 0, 0, 0])
+	changeSecondItem(&a)
+	fmt.Println("Changed!", a) // This will change as it has a receiver	([0, 1, 0, 0, 0])
+
+	var b = []int{0, 0, 0, 0}
+	changeSecondItemSlice(b)
+	fmt.Println("Changed clice by val..?", b) // Changed, even though we sent by value, not reference ([0, 1, 0, 0, 0])
+	fmt.Println("b changed because it's a slice, and slices, maps, and channels are always sent by reference, not copy-value. Arrays sends by value")
+
+	testGoroutines()
+}
+
+// GOROUTINES AND CHANNELS
+// Goroutines are functions declared with go functionName()
+// The for loops will all start a new goroutine in the background, running them separately,
+// not returning 0123456789, but still correct behavior
+func printHi() {
+	fmt.Println("Hi")
+}
+func testGoroutines() {
+	fmt.Println("Testing Goroutines: \"Hi\" is a return value of a goroutine 'printHi()'")
+	go printHi()
+	fmt.Println("Hi2")
+	// Hi will sometimes not be printed...
+	var wg sync.WaitGroup
+
+	wg.Add(10)
+
+	// This returns weird results
+	// because it uses the i in the for loop as a copy
+	for i := 0; i < 10; i++ {
+		go func() {
+			fmt.Print(i) // 101010101033101010
+			wg.Done()
+		}() // returnvalue
+	}
+	wg.Wait()
+
+	// Testing again
+	wg.Add(10)
+	for i := 0; i < 10; i++ {
+		go func(i int) {
+			fmt.Print(i) //7126403985 all numbers from 0-9 printed
+			wg.Done()
+		}(i) // returnvalue
+	}
+	wg.Wait()
+
+	wg.Add(10)
+	for i := 0; i < 10; i++ {
+		go printNum(i, &wg) // 4207186395
+	}
+	wg.Wait()
+
+	//
+	fmt.Println("Always pass in a parameter in the goroutine")
+
+	testChannels()
+}
+
+func printNum(i int, wg *sync.WaitGroup) { // Passing in the waitgroup by reference
+	fmt.Print(i)
+	wg.Done()
+}
+
+// CHANNELS
+// Allows putting data inside the channels and pull data out of those channels in a thread safe way
+func testChannels() {
+	fmt.Println("Testing channels")
+}
